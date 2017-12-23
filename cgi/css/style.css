@@ -1,0 +1,110 @@
+
+aside{
+	#padding-top:20pt;
+	font-size: 16pt;
+	font-weight: bold;
+	#text-decoration: underline;
+	font-style: italic;
+	#border: 1px solid #000;
+	color: silver;
+	#padding: 11pt;
+	#margin:5pt;
+	width: 18%;
+	float:left;
+	position: absolute;
+	background: black;
+	height:150%;
+}
+
+html{
+		padding: 0pt;
+	margin:0pt;
+	height: 95%;
+	#background: linear-gradient(45deg, #77dde7,  #C5DDE8);	
+	background: url(../matr.jpg)
+}
+
+header{
+	font-size: 11pt;
+	font-weight: bold;
+	text-decoration: underline;
+	font-style: italic;
+	width: 97,5%;
+	height: 20pt;
+	background-color: #1164b4;
+	padding: 11pt;
+	margin:0pt;
+	height: 30pt;
+	#position: absolute;
+	#background: linear-gradient(-45deg, #fefcea, #4EC9FD);	
+}
+
+.aside:hover{
+	background-color: White;
+	color: Black;
+}
+
+article{
+	#position: absolute;
+	border: 1px solid #000;
+	width: 79.7%;
+	height: 70%;
+	right: 20pt;
+	float: right;
+	padding: 8pt;
+	margin:0pt;
+	#position: absolute;
+	zoom: 0;
+	z-index: 11;
+	border-radius:3pt;
+	background-color:white;
+	box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);
+}
+
+body{
+	padding: 0;
+	height:95%;
+	margin:0;
+	}
+	
+
+.button {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+margin: 0 auto; 
+background: radial-gradient(farthest-side ellipse at top left, white, #aaaaaa);
+box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);
+#position: absolute;
+}
+
+footer{
+	float:right;
+	width: 70%;
+	padding: 11pt;
+	margin-bottom:10pt;
+	margin-right:20pt;
+	margin-left:100pt;
+	#position: absolute;
+		#position: relative;
+		#background:green;
+	}
+	li {
+        display: inline-block; 
+   	width: 24%;
+ 	      #  color: gold;
+        line-height: 120px;
+        font-size: 32px;
+        text-align: center;
+        }
+.aside{
+	text-indent:10px;
+	width:100%;
+	background: black;
+	padding-top:10px;
+	padding-bottom:10px;
+
+	#margin-left:20px;
+	overflow: auto;
+	 
+	}

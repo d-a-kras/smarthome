@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html scroll="no">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>
+Умный дом
+</title>
+
+ <script type="text/javascript" src="../lib/jq.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body scrolling="no" > 
+
+<header>
+
+</header>
+<aside scrolling="yes">
+ <div class="aside" id="a1" > лампочки </div>
+ <div class="aside" id="a2" > розетки</div>
+ 
+ <div class="aside" id="a3" > датчики </div>
+ <div class="aside" id="a2" > роутер</div>
+ <div class="aside" id="a2" > будильник</div>
+ <div class="aside" id="a2" > обогреватель</div>
+ <div class="aside" id="a2" > безопасность</div>
+ <div class="aside" id="a4" > все </div>
+ 
+</aside>
+<article></article>
+<div id="">
+</div>
+
+<footer>
+<ul>
+           <li><div class="button">1</div></li>
+           <li><div class="button">2</div></li>
+           <li><div class="button">3</div></li>
+           <li><div class="button">4</div></li>
+</ul>
+
+
+
+</footer>
+
+
+</body>
+<script>
+	$(document).ready(function(){
+		alert("ready")
+		$("#a1").click(function(){
+		alert("click")
+     
+		$.ajax({url:"2.py", 
+      
+		success:function(result){
+         $("article").html(result)}
+   });
+   
+
+});
+});
+</script>
+</html>
