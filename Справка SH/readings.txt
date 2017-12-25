@@ -1,0 +1,12 @@
+CREATE TABLE public.readings
+(
+  id integer NOT NULL,
+  iddev integer NOT NULL,
+  datetime timestamp without time zone NOT NULL,
+  value double precision NOT NULL
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.readings
+  OWNER TO postgres;
