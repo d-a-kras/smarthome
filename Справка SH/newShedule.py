@@ -1,19 +1,16 @@
-import pgdb
+#!/usr/bin/python3
+import psycopg2
+import sys
 
-try:
-    conn = pgdb.connect(database='loval', host='localhost', port='5555',
-                        user='postgres', password='kras')
-except pgdb.Error as err:
-    print("Connection error: {}".format(err))
+
+connect = psycopg2.connect(database='local', host='localhost',port='5432',user='postgres', password='kras')
+cursor=connect.cursor()
+
 
 sql = "SELECT * FROM shedules"
     
-try:
-    cur = conn.cursor()
-    cur.execute(sql)
-    data = cur.fetchall()
-except pgdb.Error as err:
-    print("Query error: {}".format(err))
+cursor.execute(sql)
+data = cursor.fetchall()
     
 print(data)
-6
+
