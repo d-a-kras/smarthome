@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION newShedule (idd integer, dt timestamp without time zone, val double precision)
+RETURNS boolean AS $$
+declare
+	total integer;
+BEGIN
+   SELECT count(*) into total FROM shedules;
+   INSERT INTO shedules (id, idddev, datetime, value, status) VALUES (total+1, idd, to_timestamp(dt), val, 5);
+   
+END;
+$$ LANGUAGE plpgsql;

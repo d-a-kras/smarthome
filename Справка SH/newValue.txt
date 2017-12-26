@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION newValue (idd integer, dt DateTime, val double)
+RETURNS boolean AS $result$
+declare
+	total integer;
+BEGIN
+   SELECT count(*) into total FROM shedules;
+   INSERT INTO shedules (id, idddev, datetime, value, status) VALUES (total, idd, dt, val, 5);
+   RETURN total;
+END;
+$total$ LANGUAGE plpgsql;

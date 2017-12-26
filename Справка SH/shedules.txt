@@ -1,0 +1,13 @@
+CREATE TABLE public.shedules
+(
+  id integer NOT NULL,
+  iddev integer NOT NULL,
+  datetime timestamp without time zone NOT NULL,
+  value double precision NOT NULL,
+  status integer NOT NULL
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.shedules
+  OWNER TO postgres;
