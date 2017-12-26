@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import time
+import numpy as np
+
 c = 1004.5 
 P = 1000
 R = 8.31446
@@ -55,15 +58,13 @@ while Qt>0:
     Qt=Qt+Qp-P
     #print(T)
     if(i%60==0):
-        print("%d %f %f %f %f" % (i/60,T,Qt,Qp,P))
+        #print("%d %f %f %f %f" % (i/60,T,Qt,Qp,P))
         P=Qp+P1
 SP=SP/600    
         
 
 i=1
-T=T1;
-c1=(c*S*H*p*M/(R*1000))
-c2=Rp*Ss*(1+0.05)
+T=T1
 P1=Qtt/600;
 P=P1+SP
 while Qtt>0:
@@ -73,5 +74,35 @@ while Qtt>0:
     Qtt=Qtt+Qp-P
     #print(T)
     if(i%60==0):
-        print("%d %f %f %f %f" % (i/60,T,Qtt,Qp,P))
+        #print("%d %f %f %f %f" % (i/60,T,Qtt,Qp,P))
         P=P1+SP
+x=np.zeros((200,60))
+g=np.zeros((200,60))
+
+#print(x)
+print(x.shape)
+i=1
+u=[]
+
+while i<2000:
+    i=i+1
+    if(i%10==0):
+        u.append(i)
+        j=i/10
+        x[int(j)-1][0]=T1
+print(x)
+print(u)
+
+i=0
+j=0
+while i<200:
+    while j<60: 
+        Qp= (x[i][j]-Tn)*c2
+        g[i][j+1]=g[i][j]+Qp-u[i]
+        x[i][j+1]=c1*T2/(g[i][j]+c1)-273
+        j=j+1
+    j=0
+    i=i+1
+  
+print(x)
+time.sleep(10000)
