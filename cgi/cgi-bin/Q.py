@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import time
 import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d
 
 c = 1004.5 
 P = 1000
@@ -12,9 +14,9 @@ Ss=10
 Rp=1.24
 
 #полученные значения
-T2 = 22
+T2 = 28
 T1 = 17
-Tn = -10
+Tn = -10+273
 T2=T2+273
 T1=T1+273
 
@@ -25,7 +27,7 @@ Q.insert(0,0)
 
 #Q потерь
 
-Qp= Rp*(T1-Tn-273)*Ss*(1+0.05)
+Qp= Rp*(T1-Tn)*Ss*(1+0.05)
 print("потери= %f" % Qp)
 
 i=0
@@ -52,13 +54,13 @@ P1=Qt/600;
 P=P1+Qp
 while Qt>0:
     i=i+1
-    T=c1*T2/(Qt+c1)-273
+    T=c1*T2/(Qt+c1)
     SP=SP+Qp
     Qp= (T-Tn)*c2
     Qt=Qt+Qp-P
     #print(T)
     if(i%60==0):
-        #print("%d %f %f %f %f" % (i/60,T,Qt,Qp,P))
+        print("%d %f %f %f %f" % (i/60,T,Qt,Qp,P))
         P=Qp+P1
 SP=SP/600    
         
@@ -69,40 +71,73 @@ P1=Qtt/600;
 P=P1+SP
 while Qtt>0:
     i=i+1
-    T=c1*T2/(Qtt+c1)-273
+    T=c1*T2/(Qtt+c1)
     Qp= (T-Tn)*c2
     Qtt=Qtt+Qp-P
     #print(T)
     if(i%60==0):
-        #print("%d %f %f %f %f" % (i/60,T,Qtt,Qp,P))
+        print("%d %f %f %f %f" % (i/60,T,Qtt,Qp,P))
         P=P1+SP
-x=np.zeros((200,60))
-g=np.zeros((200,60))
+x=np.zeros((20,20,60))
+g=np.zeros((20,20,60))
+u=np.zeros((20,20,60))
 
 #print(x)
 print(x.shape)
 i=1
-u=[]
 
-while i<2000:
+
+while i<20:
+    x[i][i][0]=T1
+    x[i][i][59]=T2
     i=i+1
-    if(i%10==0):
-        u.append(i)
-        j=i/10
-        x[int(j)-1][0]=T1
-print(x)
-print(u)
+    
+i=0
+j=0
+l=0
+while l<59:
+    while i<20:
+        while j<20:     
+            u[j][i][l]=(i+1)*50
+            j=j+1
+        j=0
+        i=i+1
+    i=0    
+    l=l+1  
+#print(u[:][:][1])
+
 
 i=0
 j=0
-while i<200:
-    while j<60: 
-        Qp= (x[i][j]-Tn)*c2
-        g[i][j+1]=g[i][j]+Qp-u[i]
-        x[i][j+1]=c1*T2/(g[i][j]+c1)-273
-        j=j+1
-    j=0
+k=0
+while i<20:
+    while k<20:
+        while j<58:
+            x[k][i][j]=c1*T2/(g[k][i][j]+c1)
+            Qp= (x[k][i][j]-Tn)*c2*10
+            if x[k][i][j]<T2:              
+                g[k][i][j+1]=g[k][i][j]+Qp-u[k][i][j]
+                u[k][i][j+1]=u[k][i][j]
+                
+            else:             
+                g[k][i][j+1]=g[k][i][j]+Qp-u[k][i][j]
+                u[k][i][j+1]=int(Qp/10)
+                
+            
+            j=j+1
+        j=0
+        k=k+1
+    k=0
     i=i+1
-  
-print(x)
+i=0
+j=0
+k=0
+
+ax=axes3d.Axes3D(plt.figure())
+i=np.arange(0,20,1)
+X,Y = np.meshgrid(i,i)
+#ax.plot_wireframe(X,Y,, rstride=10, cstride=10)
+#plt.show()
+print(x[1][1][:])
+#print(x)
 time.sleep(10000)

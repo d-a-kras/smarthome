@@ -1,12 +1,13 @@
-CREATE TABLE public.readings
+CREATE TABLE public.indications
 (
   id integer NOT NULL,
   iddev integer NOT NULL,
   datetime timestamp without time zone NOT NULL,
-  value double precision NOT NULL
+  value double precision NOT NULL,
+  CONSTRAINT key PRIMARY KEY (id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE public.readings
+ALTER TABLE public.indications
   OWNER TO postgres;
